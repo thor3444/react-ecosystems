@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import NewTodoForm from "./NewTodoForm";
 import TodoListItem from "./TodoListItem";
 import {
-	removeTodo,
-	markTodoAsCompleted,
-	markTodoAsUncompleted,
-} from "./actions.js";
-import { displayAlert, loadTodos } from "./thunks.js";
+	displayAlert,
+	loadTodos,
+	removeTodoRequest,
+	markTodoAsCompletedRequest,
+	markTodoAsNotCompletedRequest,
+} from "./thunks.js";
 import "./TodoList.css";
 import { isLoading } from "./reducers";
 
@@ -16,7 +17,6 @@ const TodoList = ({
 	onRemovePressed,
 	onCompletedPressed,
 	onUncompletedPressed,
-	onDisplayAlertClicked,
 	isLoading,
 	startLoadingTodos,
 }) => {
@@ -35,7 +35,6 @@ const TodoList = ({
 					onRemovePressed={onRemovePressed}
 					onCompletedPressed={onCompletedPressed}
 					onUncompletedPressed={onUncompletedPressed}
-					onTextPressed={onDisplayAlertClicked}
 				/>
 			))}
 		</div>
@@ -50,10 +49,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	onRemovePressed: (text) => dispatch(removeTodo(text)),
-	onCompletedPressed: (text) => dispatch(markTodoAsCompleted(text)),
-	onUncompletedPressed: (text) => dispatch(markTodoAsUncompleted(text)),
-	onDisplayAlertClicked: (text) => dispatch(displayAlert(text)),
+	onRemovePressed: (id) => dispatch(removeTodoRequest(id)),
+	onCompletedPressed: (id) => dispatch(markTodoAsCompletedRequest(id)),
+	onUncompletedPressed: (id) => dispatch(markTodoAsNotCompletedRequest(id)),
 	startLoadingTodos: () => dispatch(loadTodos()),
 });
 
