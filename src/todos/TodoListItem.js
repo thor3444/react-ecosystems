@@ -5,17 +5,17 @@ const TodoListItem = ({
 	todo,
 	onRemovePressed,
 	onCompletedPressed,
-	onUncompletedPressed,
+	onIncompletedPressed,
 }) => (
 	<div className="todo-item-container">
 		<h3>{todo.text}</h3>
 		<div className="buttons-container">
 			{todo.isCompleted ? (
 				<button
-					className="uncompleted-button"
-					onClick={() => onUncompletedPressed(todo.id)}
+					className="incompleted-button"
+					onClick={() => onIncompletedPressed(todo.id)}
 				>
-					Mark as Uncompleted
+					Mark as Incompleted
 				</button>
 			) : (
 				<button
